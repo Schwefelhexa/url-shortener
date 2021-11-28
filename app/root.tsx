@@ -13,7 +13,10 @@ import styles from "./tailwind.css";
 
 // https://remix.run/api/app#links
 export let links: LinksFunction = () => {
-  return [{ rel: "stylesheet", href: styles }];
+  return [
+    { rel: "stylesheet", href: styles },
+    { rel: "stylesheet", href: "https://rsms.me/inter/inter.css" },
+  ];
 };
 
 // https://remix.run/api/conventions#default-export
