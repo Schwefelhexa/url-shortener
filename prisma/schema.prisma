@@ -9,3 +9,10 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model Redirect {
+  id String @id @default(uuid())
+
+  slug   String @unique
+  target String
+}
