@@ -1,4 +1,5 @@
 import { ActionFunction, redirect } from "@remix-run/server-runtime";
+import validator from "validator";
 import { PrimaryButton } from "~/components/button";
 import Input, { InputLabel } from "~/components/input";
 import { db } from "~/utils/db.server";
@@ -8,7 +9,8 @@ export const action: ActionFunction = async ({ request }) => {
   const slug = form.get("slug")?.toString();
   const target = form.get("target")?.toString();
 
-  if (!slug || !target) throw new Error("Invalid form submission!");
+  if (!slug || !target || !validator.isURL(target))
+    throw new Error("Invalid form submission!");
 
   await db.redirect.create({ data: { slug, target } });
   return redirect("/manage");
