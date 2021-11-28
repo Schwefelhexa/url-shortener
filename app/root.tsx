@@ -114,5 +114,9 @@ function Document({
 }
 
 function Layout({ children }: { children: React.ReactNode }) {
-  return <>{children}</>;
+  return (
+    <div className="flex items-center justify-center w-screen h-screen bg-gray-200">
+      <div className="sm:px-6 lg:px-8 container">{children}</div>
+    </div>
+  );
 }
