@@ -10,39 +10,27 @@ export const loader: LoaderFunction = async () => {
   return { redirects };
 };
 
-const people = [
-  {
-    name: "Jane Cooper",
-    title: "Regional Paradigm Technician",
-    role: "Admin",
-    email: "jane.cooper@example.com",
-  },
-  {
-    name: "Cody Fisher",
-    title: "Product Directives Officer",
-    role: "Owner",
-    email: "cody.fisher@example.com",
-  },
-];
-
 export default function Manage() {
-  const data = useLoaderData<LoaderData>();
+  const { redirects } = useLoaderData<LoaderData>();
+
+  const hostname =
+    typeof window === "object"
+      ? window.location.protocol + "//" + window.location.host
+      : "";
 
   return (
     <Table>
       <TableHead>
-        <TableHead.Cell>Name</TableHead.Cell>
-        <TableHead.Cell>Title</TableHead.Cell>
-        <TableHead.Cell>Email</TableHead.Cell>
-        <TableHead.Cell>Role</TableHead.Cell>
+        <TableHead.Cell>Slug</TableHead.Cell>
+        <TableHead.Cell>Target</TableHead.Cell>
       </TableHead>
       <TableBody>
-        {people.map((person, personId) => (
-          <TableRow key={personId}>
-            <TableRow.Cell highlight>{person.name}</TableRow.Cell>
-            <TableRow.Cell>{person.title}</TableRow.Cell>
-            <TableRow.Cell>{person.email}</TableRow.Cell>
-            <TableRow.Cell>{person.role}</TableRow.Cell>
+        {redirects.map((redirect) => (
+          <TableRow key={redirect.id}>
+            <TableRow.Cell highlight>
+              {hostname}/redirect/{redirect.slug}
+            </TableRow.Cell>
+            <TableRow.Cell>{redirect.target}</TableRow.Cell>
           </TableRow>
         ))}
       </TableBody>
