@@ -4,12 +4,19 @@ import { PrimaryButton } from "~/components/button";
 import Input, { InputLabel } from "~/components/input";
 import { db } from "~/utils/db.server";
 
+const invalidSlugChars = ["/"];
+
 export const action: ActionFunction = async ({ request }) => {
   const form = await request.formData();
   const slug = form.get("slug")?.toString();
   const target = form.get("target")?.toString();
 
-  if (!slug || !target || !validator.isURL(target))
+  if (
+    !slug ||
+    !target ||
+    !validator.isURL(target) ||
+    invalidSlugChars.map((char) => slug.includes(char)).includes(true)
+  )
     throw new Error("Invalid form submission!");
 
   await db.redirect.create({ data: { slug, target } });
