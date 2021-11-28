@@ -9,9 +9,11 @@ import {
 } from "remix";
 import type { LinksFunction } from "remix";
 
+import styles from "./tailwind.css";
+
 // https://remix.run/api/app#links
 export let links: LinksFunction = () => {
-  return [];
+  return [{ rel: "stylesheet", href: styles }];
 };
 
 // https://remix.run/api/conventions#default-export
