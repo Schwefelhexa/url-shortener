@@ -42,17 +42,19 @@ export function TableRow({ children }: PropsWithChildren<{}>) {
   return <tr>{children}</tr>;
 }
 
-type TableRowCellProps = { highlight?: boolean };
+type TableRowCellProps = { highlight?: boolean; alignRight?: boolean };
 function TableRowCell({
   children,
   highlight = false,
+  alignRight = false,
 }: PropsWithChildren<TableRowCellProps>) {
   return (
     <td
       className={classnames(
         "whitespace-nowrap px-6 py-4 text-sm",
         !highlight && "text-gray-500",
-        highlight && "font-medium text-gray-900"
+        highlight && "font-medium text-gray-900",
+        alignRight && "text-right"
       )}
     >
       {children}
