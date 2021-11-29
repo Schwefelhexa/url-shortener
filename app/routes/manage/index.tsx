@@ -36,9 +36,19 @@ export default function Manage() {
               </TableRow.Cell>
               <TableRow.Cell>{redirect.target}</TableRow.Cell>
               <TableRow.Cell alignRight>
-                <DangerButton>
-                  <TrashIcon aria-label="Delete" className="w-5 h-5 -mx-2" />
-                </DangerButton>
+                <form action="/manage/delete" method="post">
+                  <DangerButton type="submit">
+                    <TrashIcon aria-label="Delete" className="w-5 h-5 -mx-2" />
+                  </DangerButton>
+                  <input
+                    type="text"
+                    name="id"
+                    id="id"
+                    value={redirect.id}
+                    readOnly
+                    className="hidden"
+                  />
+                </form>
               </TableRow.Cell>
             </TableRow>
           ))}
