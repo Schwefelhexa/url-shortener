@@ -1,5 +1,6 @@
 import { Redirect } from ".prisma/client";
 import { LoaderFunction, useLoaderData } from "remix";
+import { PlusIcon } from "@heroicons/react/solid";
 import { PrimaryButton, PrimaryLink } from "~/components/button";
 import Table, { TableBody, TableHead, TableRow } from "~/components/Table";
 import { db } from "~/utils/db.server";
@@ -37,7 +38,9 @@ export default function Manage() {
           ))}
         </TableBody>
       </Table>
-      <PrimaryLink to="create_redirect">Create new</PrimaryLink>
+      <PrimaryLink to="create_redirect">
+        <PlusIcon className="w-5 h-5" /> <span>Create new</span>
+      </PrimaryLink>
     </main>
   );
 }
